@@ -1,0 +1,2 @@
+class HothacksController < ApplicationController
+end
