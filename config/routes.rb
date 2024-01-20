@@ -14,8 +14,12 @@ Rails.application.routes.draw do
   root "hothacks#index"
 
   # Routes related to user authentication
-  devise_for :users
-
+  devise_for :users, path: 'users', path_names: {
+    sign_in: 'login',
+    sign_out: 'logout',
+    sign_up: 'signup'
+  }
+  
   get "analytics" => "data_vis#data_view"
   get "expense/upload" => "expense#upload"
 
