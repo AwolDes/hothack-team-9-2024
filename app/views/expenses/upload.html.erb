@@ -1,0 +1,19 @@
+<div>
+  <h1 class="font-bold text-4xl">Expenses#index</h1>
+  <p>Upload CSV in app/views/expenses/upload.html.erb</p>
+  <h2>Import Expenses</h2>
+
+
+  <%= form_with url: url, method: :post, local: true do |f| %>
+    <div class="custom-file">
+        <%= f.file_field :file, class='custom-file-input'%>
+        <label class="Custom-file-label">Choose file</label>
+        <%= f.button 'Import', class" 'btn btn-primary' %>
+    </div>
+  <%end%>
+    
+  # <%=form_tag import_expenses_path, multipart: true do %>
+  #   <%=file_Field_tag :file%>
+  #   <%=submit_tag "Import CSV"%>
+  #   <%end%>
+</div>

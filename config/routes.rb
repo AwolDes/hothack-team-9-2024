@@ -9,5 +9,19 @@ Rails.application.routes.draw do
   root "hothacks#index"
 
   get "analytics" => "data_vis#data_view"
+  # CSV upload
+
+  get "expenses" => "expenses#index"
+  post "tour/:id/expenses/upload" => "expenses#create"
+
+  get "expenses/upload" => "expenses#import_data"
+
+  # http://localhost:3000/rails/info/routes
+  # resources :expenses do
+  #   collection {post :import}
+  # end
+
+
+
 
 end
