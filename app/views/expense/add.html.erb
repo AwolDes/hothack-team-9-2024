@@ -1,0 +1,35 @@
+<div class="bg-white shadow rounded">
+  <h1 class="font-bold text-4xl">Expense</h1>
+  <p>Upload Expense</p>
+  <p><%=@tour.name %>
+  <p><%=@tour.start_date %></p>
+  <p><%=@tour.finish_date %></p>
+  <p><%=@tour.budget %></p>
+
+
+  # <%= form_with(model: @expense, local: true) do |f| %>
+    <%= form_with model: @expense do |f| %>
+    <%= f.label :date %>
+    <%= f.date_field :date %>
+
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+
+    <%= f.label :cost %>
+    <%= f.number_field :cost %>
+
+    <%= f.label :state %>
+    <%= f.text_field :state %>     
+
+    <%= f.label :category %>
+    <%= f.text_field :category %>   
+
+    <%= f.submit "Create" %>
+    
+  <% end %>
+
+
+
+
+
+</div>

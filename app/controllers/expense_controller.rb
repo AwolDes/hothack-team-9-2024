@@ -1,7 +1,25 @@
 class ExpenseController < ApplicationController
 
+
+
+  def add
+    ap params[:id]
+    @tour = Tour.find(params[:id])
+
+    @expense = Expense.new
+    ap @tour
+  end
+
+  def create
+    @tour = Tour.find(params[:id])
+    @expense = Expense.new
+    ap @tour
+  end
+
+
   def upload
-    @tour = Tour.first
+    # @tour = Tour.first
+    @tour = Tour.find(params[:id])
     # @expenses = Expense.where(id: 1)
     @expenses = Expense.first
     ap @expenses

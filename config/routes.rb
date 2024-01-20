@@ -21,10 +21,28 @@ Rails.application.routes.draw do
   }
   
   get "analytics" => "data_vis#data_view"
-  get "expense/upload" => "expense#upload"
 
-  resources :expense do
+  # get "expenses"
+
+
+  get "tours/:id/expenses" => "expenses#index"
+  get "tours/:id/expenses/add" => "expenses#new"
+  get "tours/:id/expenses/import" => "expenses#import"
+  post "tours/:id/expenses" => "expenses#create"
+
+
+  resources :expenses do
     collection {post :import}
   end
+
+  # get "expenses/new" => "expenses#new"
+  # get "tours/:id/expense/add" => "expense#new"
+
+  # post "expenses" => "expense#create", as: expenses
+
+  # get "tours/:id/expense/upload" => "expense#upload"
+  # get "expense/upload" => "expense#upload"
+
+
   
 end
