@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get "analytics" => "data_vis#data_view"
   get "expense/upload" => "expense#upload"
 
-  resources :expense
-
+  resources :expense do
+    collection {post :import}
+  end
+  
 end

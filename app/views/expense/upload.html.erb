@@ -6,6 +6,11 @@
   <p><%=@tour.finish_date %></p>
   <p><%=@tour.budget %></p>
 
+  <p><%=@expenses.date %></p>
+  <p><%=@expenses.city %></p>
+  <p><%=@expenses.cost %></p>
+  <p><%=@expenses.category %></p>
+
   <%= form_with(model: @expense, local: true) do |f| %>
     <%= f.label :date %>
     <%= f.date_field :date %>
