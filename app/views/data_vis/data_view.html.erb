@@ -1,27 +1,35 @@
-<div class = "h-screen w-screen flex-col items-center p-8"> 
+<div class = "h-full w-full flex-col items-center p-8"> 
     <div class = "flex justify-center text-xl">  
-        <h1 class = "font-semibold"> Data Analytics for <%= @tour_name %> </h1>
+        <h1 class = "font-semibold mb-8"> Data Analytics for <%= @tour_name %> </h1>
     </div>
-    <div class = "w-full rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10"> 
-        <h2 class = "mb-6"> Expenses by Category </h2>
-        <%=line_chart @expenses.group_by_day(:date).sum(:cost), ytitle: "Cost" %>
+    <div class = "w-full rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10 bg-white"> 
+        <h2 class = "mb-6"> Expenses Over Time </h2>
+        <%=line_chart @expenses_tour.group_by_day(:date).sum(:cost), ytitle: "Cost" %>
+    </div>
+
+    <div class = "flex flex-row w-full justify-around bg-transparent"> 
+        <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10 mr-4 w-1/2 bg-white"> 
+            <h2 class = "mb-6"> Expenses by Category </h2>
+            <%= pie_chart @expenses_tour.group(:category).sum(:cost).transform_keys(&:capitalize), donut: true, legend: "left" %>
+        </div>
+        <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10 ml 4 w-1/2 bg-white"> 
+            <h2 class = "mb-6"> Budget Usage </h2>
+            <%= pie_chart @budget_chart, legend: "left", title: "Budget Utilisation" %>
+        </div>
     </div>
     
-    <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10"> 
-        <h2 class = "mb-6"> Budget Usage </h2>
-        <%= pie_chart @expenses.group(:category).sum(:cost).transform_keys(&:capitalize), donut: true, legend: "left" %>
-    </div>
     <!--
     <div class = "flex justify-center text-xl">  
-        <h1 class = "font-semibold"> Benchmark Comparisons for <%= @tour_name %> </h1>
+        <h1 class = "font-semibold mb-8"> Benchmark Comparisons for <%= @tour_name %> </h1>
     </div>
-    <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10"> 
+    <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10 bg-white"> 
         <h2 class = "mb-6"> Average Expense by Category </h2>
-        <%= line_chart [["January", 15], ["February", 25], ["March", 10]] %>
+        <%= bar_chart @chart_data, legend: "left", xtitle: "Average Cost", ytitle: "Expense Category", discrete: true %>
+
     </div>
-    <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10"> 
+    <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10 bg-white"> 
         <h2 class = "mb-6"> Most Expensive Location </h2>
         <%= line_chart [["January", 15], ["February", 25], ["March", 10]] %>
     </div>
-    -->x
+    -->
 </div>
