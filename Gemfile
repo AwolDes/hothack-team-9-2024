@@ -77,3 +77,5 @@ gem "chartkick"
 gem "devise"
 
 gem "groupdate"
+
+gem "awesome_print"
