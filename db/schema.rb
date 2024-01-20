@@ -13,7 +13,6 @@
 ActiveRecord::Schema[7.1].define(version: 2024_01_20_015121) do
   create_table "expenses", force: :cascade do |t|
     t.date "date"
-    t.string "day"
     t.string "city"
     t.decimal "cost"
     t.string "state"
