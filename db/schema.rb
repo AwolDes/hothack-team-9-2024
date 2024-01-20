@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_20_045205) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_20_095415) do
   create_table "expenses", force: :cascade do |t|
     t.date "date"
     t.string "city"
@@ -30,6 +30,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_20_045205) do
     t.float "budget"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,4 +46,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_20_045205) do
   end
 
   add_foreign_key "expenses", "tours"
+  add_foreign_key "tours", "users"
 end
