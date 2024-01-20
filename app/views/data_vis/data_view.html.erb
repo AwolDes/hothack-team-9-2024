@@ -13,23 +13,21 @@
             <%= pie_chart @expenses_tour.group(:category).sum(:cost).transform_keys(&:capitalize), donut: true, legend: "left" %>
         </div>
         <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10 ml 4 w-1/2 bg-white"> 
-            <h2 class = "mb-6"> Budget Usage </h2>
-            <%= pie_chart @budget_chart, legend: "left", title: "Budget Utilisation" %>
+            <h2 class = "mb-6"> Budget Usage: <%= @percentage_of_budget %>% </h2>
+            <%= pie_chart @budget_chart, legend: "left" %>
         </div>
     </div>
     
-    <!--
     <div class = "flex justify-center text-xl">  
         <h1 class = "font-semibold mb-8"> Benchmark Comparisons for <%= @tour_name %> </h1>
     </div>
     <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10 bg-white"> 
         <h2 class = "mb-6"> Average Expense by Category </h2>
-        <%= bar_chart @chart_data, legend: "left", xtitle: "Average Cost", ytitle: "Expense Category", discrete: true %>
+        <%= bar_chart @avg_category_expense, legend: "left", xtitle: "Average Cost", ytitle: "Expense Category", legend: nil %>
 
-    </div>
+    </div>  
     <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10 bg-white"> 
         <h2 class = "mb-6"> Most Expensive Location </h2>
-        <%= line_chart [["January", 15], ["February", 25], ["March", 10]] %>
+        <%= bar_chart @comparison_data, stacked: false %>
     </div>
-    -->
 </div>

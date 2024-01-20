@@ -3,13 +3,11 @@ class DataVisController < ApplicationController
         #overall tour information
         @tour_name = Tour.find_by(id: 7)&.name
         @expenses_tour = Expense.where(tour_id: 7)
-        @expenses_all = Expense.all
 
         #budget calculations
         tour_budget = Tour.find_by(id: 1)&.budget 
         total_expenses_cost = Expense.where(tour_id: 1).sum(:cost)
         percentage_of_budget = (total_expenses_cost / tour_budget) * 100
-        puts "percentage budget: #{percentage_of_budget}"
 
         @budget_chart = [
             ['Expenses', total_expenses_cost.round(2) ],
@@ -17,13 +15,23 @@ class DataVisController < ApplicationController
         ]
         @percentage_of_budget = percentage_of_budget.round(2)
         
+
+
         #benchmark averages
         category_expenses = Expense.group(:category).average(:cost)
+        @avg_category_expense = category_expenses.map do |category, avg_cost|
+            [category.capitalize, avg_cost.round(2)]
+        end
 
-        # Format data for Chartkick
-        @chart_data = category_expenses.map do |category, avg_cost|
-            { name: category.capitalize, data: avg_cost.round(2) }
-        
+        @tour_costs = @expenses_tour.group(:category).sum(:cost)
+        @comparison_data = @tour_costs.map do |category, actual_cost|
+            {
+                name: category.capitalize,
+                data: {
+                    'Actual Cost' => actual_cost,
+                    'Average Cost' => @avg_category_expense.to_h[category]&.last || 0
+                }
+            }
         end
     end
 end
