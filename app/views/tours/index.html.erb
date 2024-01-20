@@ -1,59 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <title>2D Array of Visual Cards</title>
-</head>
-<body class="bg-gray-100 p-4">
+<div class="grid grid-cols-3 grid-rows-3 gap-2">
+  <%= render @tours %>
 
-  <div class="grid grid-cols-3 gap-4">
-    <div class="bg-white p-4 shadow-md rounded-md">
-      <h2 class="text-lg font-semibold mb-2">Card 1</h2>
-      <p class="text-gray-600">Card description or content goes here.</p>
+<div class="col-auto border border-grey-200 shadow  dark:border-gray-700">
+    <div class="flex justify-center h-full">
+        <button class="button">
+            <a class="text-blue-600" href="add_tour">Create new</a>
+        </button>
     </div>
+</div>
 
-    <div class="bg-white p-4 shadow-md rounded-md">
-      <h2 class="text-lg font-semibold mb-2">Card 2</h2>
-      <p class="text-gray-600">Card description or content goes here.</p>
-    </div>
 
-    <div class="bg-white p-4 shadow-md rounded-md">
-      <h2 class="text-lg font-semibold mb-2">Card 3</h2>
-      <p class="text-gray-600">Card description or content goes here.</p>
-    </div>
+</div>
 
-    <div class="bg-white p-4 shadow-md rounded-md">
-      <h2 class="text-lg font-semibold mb-2">Card 4</h2>
-      <p class="text-gray-600">Card description or content goes here.</p>
-    </div>
 
-    <div class="bg-white p-4 shadow-md rounded-md">
-      <h2 class="text-lg font-semibold mb-2">Card 5</h2>
-      <p class="text-gray-600">Card description or content goes here.</p>
-    </div>
 
-    <div class="bg-white p-4 shadow-md rounded-md">
-      <h2 class="text-lg font-semibold mb-2">Card 6</h2>
-      <p class="text-gray-600">Card description or content goes here.</p>
-    </div>
 
-    <div class="bg-white p-4 shadow-md rounded-md">
-      <h2 class="text-lg font-semibold mb-2">Card 7</h2>
-      <p class="text-gray-600">Card description or content goes here.</p>
-    </div>
 
-    <div class="bg-white p-4 shadow-md rounded-md">
-      <h2 class="text-lg font-semibold mb-2">Card 8</h2>
-      <p class="text-gray-600">Card description or content goes here.</p>
-    </div>
-
-    <div class="bg-white p-4 shadow-md rounded-md">
-      <h2 class="text-lg font-semibold mb-2">Card 9</h2>
-      <p class="text-gray-600">Card description or content goes here.</p>
-    </div>
-  </div>
-
-</body>
-</html>
