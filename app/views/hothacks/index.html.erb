@@ -1,10 +1,12 @@
-<div>
-    <% if user_signed_in? %>
+<% if user_signed_in? %>
+    <div>
         <div> Welcome <%= current_user.email %> </div> 
         <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
-        <% else %>
-        <%= button_to "Sign in", new_user_session_path %> 
-    <% end %>
-</div>
+    </div>
+<% else %>
+    <div>
+        <%= button_to "Sign in", new_user_session_path %>
+    </div>
+<% end %>
 
 <h1 class="text-2xl">Welcome to hothack!!</h1>
