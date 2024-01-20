@@ -1,5 +1,5 @@
 class DataVisController < ApplicationController
-    
-    def data_view; end
 
+    def data_view; end
+    
 end
