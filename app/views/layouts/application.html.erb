@@ -14,8 +14,22 @@
 
   <body>
     <main class="container mx-auto mt-28 px-5 flex">
+      <div class="navbar">
+        <% if user_signed_in? %>
+          <div>
+              <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+          </div>
+          <div>Placeholder for other links</div>
+        <% else %>
+          <div>
+              <%= button_to "Sign in", new_user_session_path %>
+          </div>
+        <% end %>
+      </div>
+
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
+
       <%= yield %>
     </main>
   </body>
