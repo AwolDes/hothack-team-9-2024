@@ -10,4 +10,7 @@ Rails.application.routes.draw do
 
   # Routes related to user authentication
   devise_for :users
+
+  get "analytics" => "data_vis#data_view"
+
 end
