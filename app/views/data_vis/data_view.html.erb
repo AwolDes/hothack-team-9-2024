@@ -1,14 +1,27 @@
 <div class = "h-screen w-screen flex-col items-center p-8"> 
-    <div class = "w-full rounded-xl shadow-lg flex-col items-center justify-around p-8"> 
-        <h1> Expenses Over Time </h1>
+    <div class = "flex justify-center text-xl">  
+        <h1 class = "font-semibold"> Data Analytics for <%= @tour_name %> </h1>
+    </div>
+    <div class = "w-full rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10"> 
+        <h2 class = "mb-6"> Expenses by Category </h2>
+        <%=line_chart @expenses.group_by_day(:date).sum(:cost), ytitle: "Cost" %>
+    </div>
+    
+    <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10"> 
+        <h2 class = "mb-6"> Budget Usage </h2>
+        <%= pie_chart @expenses.group(:category).sum(:cost).transform_keys(&:capitalize), donut: true, legend: "left" %>
+    </div>
+    <!--
+    <div class = "flex justify-center text-xl">  
+        <h1 class = "font-semibold"> Benchmark Comparisons for <%= @tour_name %> </h1>
+    </div>
+    <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10"> 
+        <h2 class = "mb-6"> Average Expense by Category </h2>
         <%= line_chart [["January", 15], ["February", 25], ["March", 10]] %>
     </div>
-    <div class = "w-full rounded-xl shadow-lg flex-col items-center justify-around p-8"> 
-        <h1> Expenses Over Time </h1>
+    <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10"> 
+        <h2 class = "mb-6"> Most Expensive Location </h2>
         <%= line_chart [["January", 15], ["February", 25], ["March", 10]] %>
     </div>
-    <div class = "w-full rounded-xl shadow-lg flex-col items-center justify-around p-8"> 
-        <h1> Expenses Over Time </h1>
-        <%= line_chart [["January", 15], ["February", 25], ["March", 10]] %>
-    </div>
+    -->x
 </div>
