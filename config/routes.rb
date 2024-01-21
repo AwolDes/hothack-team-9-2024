@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   
 
   # Routes related to data visualization
-  get "/tour/:id/analytics" => "data_vis#data_view"
+  get "/tour/:id/analytics" => "data_vis#data_view", as: "data_viz"
 
   # Routes related to csv import for expenses 
   get "tours/:id/expenses" => "expenses#index", as: "tour_expenses"
