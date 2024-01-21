@@ -1,9 +1,11 @@
-<div>
+<div class="bg-white shadow rounded p-10 m-auto">
   <h1 class="font-bold text-4xl">Tour Details</h1>
-  <p><%=@tour.name %></p>
-  <p>Start Date:<%=@tour.start_date %></p>
-  <p>Finish Date: <%=@tour.finish_date %></p>
-  <p>Budget: $ <%=@tour.budget %></p>
+  <div class="grid grid-cols-2 gap-4 p-20 border border-slate-300 m-auto">
+  <div class="font-medium">Tour Name</div><div><%=@tour.name %></div>
+  <div class="font-medium">Start Date</div><div><%=@tour.start_date.strftime('%m/%d/%Y') %></div>
+  <div class="font-medium">End Date</div><div><%=@tour.finish_date.strftime('%m/%d/%Y') %></div>
+  <div class="font-medium">Budget</div><div><%=number_to_currency(@tour.budget,  :unit => "$", :separator => ".", :delimiter => ",") %></div>
+  </div>
 
   <ul>
   <h3 class="font-bold text-4xl">Expenses</h3>  
