@@ -1,12 +1,15 @@
 class DataVisController < ApplicationController
     def data_view
+        tour_id = params[:id]
         #overall tour information
-        @tour_name = Tour.find_by(id: 7)&.name
-        @expenses_tour = Expense.where(tour_id: 7)
+        @tour = Tour.find_by(id: tour_id)
+        @tour_name = @tour&.name
+        @expenses_tour = Expense.where(tour_id: tour_id)
+        
 
         #budget calculations
-        tour_budget = Tour.find_by(id: 1)&.budget 
-        total_expenses_cost = Expense.where(tour_id: 1).sum(:cost)
+        tour_budget = @tour&.budget 
+        total_expenses_cost = @expenses_tour.sum(:cost)
         percentage_of_budget = (total_expenses_cost / tour_budget) * 100
 
         @budget_chart = [

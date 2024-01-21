@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     sign_up: 'signup'
   }
   
-  get "analytics" => "data_vis#data_view"
+
+  # Routes related to data visualization
+  get "/tour/:id/analytics" => "data_vis#data_view"
 
 end
