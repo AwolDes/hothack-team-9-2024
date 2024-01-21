@@ -1,0 +1,20 @@
+<div>
+  <h1 class="font-bold text-4xl">Tour Details</h1>
+  <p><%=@tour.name %></p>
+  <p>Start Date:<%=@tour.start_date %></p>
+  <p>Finish Date: <%=@tour.finish_date %></p>
+  <p>Budget: $ <%=@tour.budget %></p>
+
+  <ul>
+  <h3 class="font-bold text-4xl">Expenses</h3>  
+  <% @expenses.each do |expense| %>
+    <li>
+      <%= expense.date %>
+      <%= expense.city %>
+      <%= expense.state %>
+      <%= expense.cost %>
+      <%= expense.category %>
+    </li>
+  <% end %>
+  </ul>
+</div>

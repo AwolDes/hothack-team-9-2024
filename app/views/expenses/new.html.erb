@@ -1,0 +1,39 @@
+<div>
+  <h1 class="font-bold text-4xl">Add New Expense</h1>
+ 
+  <%= form_with model: @expense do |f| %>
+
+<% if f.object.errors.any? %>
+  <div>
+  <% f.object.errors.full_messages.each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+  </div>
+<% end %>
+
+    <div>
+    <%= f.label :date %>
+    <%= f.date_field :date %>
+    </div>
+    <div>
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+    </div>
+    <div>
+    <%= f.label :cost %>
+    <%= f.number_field :cost %>
+    </div>
+    <div>
+    <%= f.label :state %>
+    <%= f.text_field :state %>     
+    </div>
+    <div>
+    <%= f.label :category %>
+    <%= f.text_field :category %>   
+    <%= f.hidden_field :tour_id, value:@tour.id %>   
+    </div>
+    <div>
+    <%= f.submit "Create" %>
+    </div>
+  <% end %>
+</div>
