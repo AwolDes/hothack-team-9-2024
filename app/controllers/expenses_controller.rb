@@ -24,8 +24,6 @@ class ExpensesController < ApplicationController
       :tour_id,
     )
 
-    ap "post data paraaams"
-    ap post_data
 
     @expense = Expense.new(post_data)
     
