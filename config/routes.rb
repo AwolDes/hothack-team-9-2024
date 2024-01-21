@@ -11,8 +11,28 @@ Rails.application.routes.draw do
   get "/add_tour" => "tours#add_tour"
 
   # Defines the root path route ("/")
-  root "hothacks#index"
+  root "tours#index"
 
-  get "analytics" => "data_vis#data_view"
+  # Routes related to user authentication
+  devise_for :users, path: 'users', path_names: {
+    sign_in: 'login',
+    sign_out: 'logout',
+    sign_up: 'signup'
+  }
+  
 
+  # Routes related to data visualization
+  get "/tour/:id/analytics" => "data_vis#data_view", as: "data_viz"
+
+  # Routes related to csv import for expenses 
+  get "tours/:id/expenses" => "expenses#index", as: "tour_expenses"
+  get "tours/:id/expenses/add" => "expenses#new"
+  get "tours/:id/expenses/import" => "expenses#show"
+  post "tours/:id/expenses" => "expenses#create"
+  
+
+  resources :expenses do
+    collection { post :import}
+  end
+  
 end

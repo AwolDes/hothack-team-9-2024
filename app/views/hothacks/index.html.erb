@@ -1,1 +1,11 @@
-aaaaaaaaaaaw
+<% if user_signed_in? %>
+    <div>
+        <div> Welcome <%= current_user.email %> </div> 
+    </div>
+<% else %>
+    <div>
+        <%= button_to "Sign in", new_user_session_path %>
+    </div>
+<% end %>
+
+<h1 class="text-2xl">Welcome to hothack!!</h1>
