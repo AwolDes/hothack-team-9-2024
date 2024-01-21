@@ -11,19 +11,24 @@
 
 # db/seeds.rb
 
+current_time = Time.now.to_i
+user = User.create(email: "user#{current_time}@example.com", password: 'password', password_confirmation: 'password')
+
 # Create some sample tours
 tour1 = Tour.create(
   name: "European Adventure", 
   start_date: Date.new(2024, 5, 1), 
   finish_date: Date.new(2024, 5, 15),
-  budget: 30000
+  budget: 30000,
+  user_id: user.id
 )
 
 tour2 = Tour.create(
   name: "Asian Expedition", 
   start_date: Date.new(2024, 6, 10), 
   finish_date: Date.new(2024, 6, 25),
-  budget: 50000
+  budget: 50000,
+  user_id: user.id
 )
 
 # Create some expenses for each tour
