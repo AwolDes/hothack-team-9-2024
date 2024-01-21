@@ -33,4 +33,26 @@
         <%= bar_chart @avg_category_expense, legend: "left", xtitle: "Average Cost", ytitle: "Expense Category", legend: nil %>
 
     </div>  
+
+    <div class = "flex flex-row w-full justify-around bg-transparent h-80"> 
+        <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10 mr-4 w-1/2 bg-white"> 
+            <h2> Total Expense for <%= @tour_name %> </h2>
+            <div class = "w-full flex flex-col items-center justify-center align-center h-full p-6"> 
+                <p class = "text-9xl bold"> 
+                    $<%= @expenses_tour.sum(:cost) %> 
+                </p> 
+            </div>
+        </div>
+        <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10 ml 4 w-1/2 h-70 bg-white overflow-auto"> 
+            <h2 class = "mb-6"> Total Expenses by City </h2>
+            <% @city_expenses.each do |city, total_expense| %>
+                <div class = "flex flex-row place-content-between">
+                    <tr class = "flex flex-row">
+                        <div class = "font-semibold"> <td class = "text-semibold"><%= city %></td> </div>
+                        <div><td> <%= total_expense %> </td></div>
+                    </tr>
+                </div>
+            <% end %>
+        </div>
+    </div>
 </div>

@@ -10,6 +10,7 @@ class DataVisController < ApplicationController
         else
             @expenses_tour = Expense.where(tour_id: tour_id)
         end
+        @city_expenses = Expense.group(:city).sum(:cost)
         
         #budget calculations
         tour_budget = @tour&.budget 
