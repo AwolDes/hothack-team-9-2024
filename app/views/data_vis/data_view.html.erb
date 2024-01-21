@@ -1,1 +1,44 @@
-<%= line_chart [["January", 15], ["February", 25], ["March", 10]] %>
+<div class = "h-full w-full flex-col items-center p-8"> 
+    <div class = "flex justify-center text-xl">  
+        <h1 class = "font-semibold mb-8"> Data Analytics for <%= @tour_name %> </h1>
+    </div>
+    <div class = "w-full rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10 bg-white"> 
+        <div class = "flex flex-row w-full place-content-between"> 
+            <h2 class = "mb-6"> Expenses Over Time </h2>
+            <%= form_with model: @article do |f| %>
+                <div class = "flex flex-col"> 
+                    <p>
+                        <%= f.label :adjust_time_period, "Adjust Time Period" %>
+                        <% adjust_time_period = options_for_select ["By Day", "By Week", "By Month"] %>
+                        <%= f.select :adjust_time_period, adjust_time_period, {}, { id: 'adjust_time_period_select' } %>
+                    </p>
+                </div>
+            <% end %>
+        </div>
+        <%=line_chart @expenses_tour.group_by_day(:date).sum(:cost), ytitle: "Cost" %>
+    </div>
+
+    <div class = "flex flex-row w-full justify-around bg-transparent"> 
+        <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10 mr-4 w-1/2 bg-white"> 
+            <h2 class = "mb-6"> Expenses by Category </h2>
+            <%= pie_chart @expenses_tour.group(:category).sum(:cost).transform_keys(&:capitalize), donut: true, legend: "left" %>
+        </div>
+        <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10 ml 4 w-1/2 bg-white"> 
+            <h2 class = "mb-6"> Budget Usage: <%= @percentage_of_budget %>% </h2>
+            <%= pie_chart @budget_chart, legend: "left" %>
+        </div>
+    </div>
+    
+    <div class = "flex justify-center text-xl">  
+        <h1 class = "font-semibold mb-8"> Benchmark Comparisons for <%= @tour_name %> </h1>
+    </div>
+    <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10 bg-white"> 
+        <h2 class = "mb-6"> Average Expense by Category </h2>
+        <%= bar_chart @avg_category_expense, legend: "left", xtitle: "Average Cost", ytitle: "Expense Category", legend: nil %>
+
+    </div>  
+    <div class = "rounded-xl shadow-lg flex-col items-center justify-around p-8 mb-10 bg-white"> 
+        <h2 class = "mb-6"> Most Expensive Location </h2>
+        <%= bar_chart @comparison_data, stacked: false %>
+    </div>
+</div>
