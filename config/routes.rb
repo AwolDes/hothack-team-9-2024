@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get "/add_tour" => "tours#add_tour"
 
   # Defines the root path route ("/")
-  root "hothacks#index"
+  root "tours#index"
 
   # Routes related to user authentication
   devise_for :users, path: 'users', path_names: {
