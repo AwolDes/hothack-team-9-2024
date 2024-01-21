@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   post '/add_tour', to: 'tours#create_tour'
-
+  delete '/tours/:id/delete_tour', to: 'tours#delete_tour', as: "tour_delete"
   get "/tours" => "tours#index"
   get "/add_tour" => "tours#add_tour"
 
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   # Routes related to csv import for expenses 
   get "tours/:id/expenses" => "expenses#index", as: "tour_expenses"
   get "tours/:id/expenses/add" => "expenses#new"
-  get "tours/:id/expenses/import" => "expenses#show"
+  get "tours/:id/expenses/import" => "expenses#show", as: "expenses_import"
   post "tours/:id/expenses" => "expenses#create"
   
 

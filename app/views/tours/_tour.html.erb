@@ -1,26 +1,40 @@
 <div class="col-auto border">
-    <div class="row-auto space-x-50 space-y-50">
-        <div class="bg-white border border-grey-200 shadow  dark:border-gray-700">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                <%= content_tag(:div, tour.name, class: 'attribute') %>
-            </h5>
+    <div class="row-auto space-x-50 space-y-50" >
+        <div class="bg-white border border-grey-200 shadow  dark:border-gray-700" >
+            <div style="margin: 10px 10px 10px 15px;">
 
-            <div>
-                Start date: <%= tour.start_date %>
-            </div>
-    
-            <div>
-                Finish date: <%= tour.finish_date %>
-            </div>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                    <%= content_tag(:div, tour.name, class: 'attribute') %>
+                </h5>
 
-            <div>
-                budget: <%= tour.budget %>
-            </div>
-            
-            <div>
-                <button>
-                   <p class="text-lg text-blue-600">More details</p>
-                </button>
+                <div>
+                    Start date: <%= tour.start_date %>
+                </div>
+        
+                <div>
+                    Finish date: <%= tour.finish_date %>
+                </div>
+
+                <div>
+                    budget: <%= tour.budget %>
+                </div>
+
+                <div>
+                    Total cost: <%= tour.total_cost %>
+                </div>
+                
+                <div>
+
+                     <%= link_to "Analyse", data_viz_path(tour) %>
+
+                     <% if tour.expenses.length > 0 %>
+                        <%= link_to "See expenses", tour_expenses_path(tour), style: "color: blue;" %>
+                    <% else %>
+                        <%= link_to "Add expenses", expenses_import_path(tour), style: "color: blue;" %>
+                    <% end %>
+                    <%= link_to "Delete", tour_delete_path(tour), data: { "turbo-method": :delete }, style: "color: red;" %>
+
+                </div>
             </div>
         </div>
     </div>

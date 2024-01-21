@@ -1,7 +1,10 @@
 class ExpensesController < ApplicationController
 
   require 'csv'
-  
+
+  # Authenticate user (redirect to login view if not signed in)
+  before_action :authenticate_user!
+
   def index
     @tour = Tour.find(params[:id])
     @expenses = Expense.where(tour_id:params[:id])
