@@ -1,22 +1,34 @@
 <div class="bg-white shadow rounded p-10 m-auto">
   <h1 class="font-bold text-4xl">Tour Details</h1>
   <div class="grid grid-cols-2 gap-4 p-20 border border-slate-300 m-auto">
-  <div class="font-medium">Tour Name</div><div><%=@tour.name %></div>
+  <div class="font-medium">Tour Name</div><div class="hover:text-fuchsia-600 font-bold"><%= link_to @tour.name, data_viz_path(@tour) %></div>
   <div class="font-medium">Start Date</div><div><%=@tour.start_date.strftime('%m/%d/%Y') %></div>
   <div class="font-medium">End Date</div><div><%=@tour.finish_date.strftime('%m/%d/%Y') %></div>
   <div class="font-medium">Budget</div><div><%=number_to_currency(@tour.budget,  :unit => "$", :separator => ".", :delimiter => ",") %></div>
   </div>
 
-  <ul>
-  <h3 class="font-bold text-4xl">Expenses</h3>  
+  <h3 class="font-bold text-4xl p-10">Expenses</h3>  
+  <table class="border-collapse table-fixed w-full text-sm">
+  <thead>
+  <tr>
+  <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Date</th>
+  <th class="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">City</th>
+  <th class="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">State</th>  
+  <th class="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Cost</th>
+  <th class="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Category</th>  
+  </tr>
+  </thead>
+  <tbody class="bg-white dark:bg-slate-800">
   <% @expenses.each do |expense| %>
-    <li>
-      <%= expense&.date&.strftime('%m/%d/%Y') %>
-      <%= expense.city %>
-      <%= expense.state %>
-      <%= expense.cost %>
-      <%= expense.category %>
-    </li>
-  <% end %>
-  </ul>
+  <tr>
+  <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><%= expense&.date&.strftime('%m/%d/%Y') %></td>
+  <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><%= expense.city %></td>
+  <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><%= expense.state %></td>
+  <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><%= expense.cost %></td>
+  <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><%= expense.category %></td>
+  </tr>
+  <% end %>  
+  </tbody>
+  </table>
+
 </div>
