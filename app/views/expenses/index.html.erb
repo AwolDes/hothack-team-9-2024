@@ -5,6 +5,7 @@
   <div class="font-medium">Start Date</div><div><%=@tour.start_date.strftime('%m/%d/%Y') %></div>
   <div class="font-medium">End Date</div><div><%=@tour.finish_date.strftime('%m/%d/%Y') %></div>
   <div class="font-medium">Budget</div><div><%=number_to_currency(@tour.budget,  :unit => "$", :separator => ".", :delimiter => ",") %></div>
+  <div class="font-medium">Total Cost</div><div><%=number_to_currency(@tour.total_cost,  :unit => "$", :separator => ".", :delimiter => ",") %></div>
   </div>
 
   <h3 class="font-bold text-4xl p-10">Expenses</h3>  
