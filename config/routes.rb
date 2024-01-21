@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   # Routes related to csv import for expenses 
   get "tours/:id/expenses" => "expenses#index", as: "tour_expenses"
   get "tours/:id/expenses/add" => "expenses#new"
-  get "tours/:id/expenses/import" => "expenses#show"
+  get "tours/:id/expenses/import" => "expenses#show", as: "expenses_import"
   post "tours/:id/expenses" => "expenses#create"
   
 

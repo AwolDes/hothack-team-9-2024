@@ -18,13 +18,20 @@
                 <div>
                     budget: <%= tour.budget %>
                 </div>
+
+                <div>
+                    Total cost: <%= tour.total_cost %>
+                </div>
                 
                 <div>
 
-                     <%= link_to "More details" %>
+                     <%= link_to "Analyse", data_viz_path(tour) %>
 
-                     <%= link_to "Add expensive" %>
-
+                     <% if tour.expenses.length > 0 %>
+                        <%= link_to "See expenses", tour_expenses_path(tour) %>
+                    <% else %>
+                        <%= link_to "Add expenses", expenses_import_path(tour) %>
+                    <% end %>
                     <%= link_to "Delete", tour_delete_path(tour), data: { "turbo-method": :delete }, style: "color: red;" %>
 
                 </div>
