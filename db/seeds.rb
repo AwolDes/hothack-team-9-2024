@@ -11,6 +11,9 @@
 
 # db/seeds.rb
 
+# You can update this to just be your user id if you want
+# user_id = YOU_ID
+# Then change user.id to user_id
 current_time = Time.now.to_i
 user = User.create(email: "user#{current_time}@example.com", password: 'password', password_confirmation: 'password')
 
