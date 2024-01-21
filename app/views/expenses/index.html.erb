@@ -11,7 +11,7 @@
   <h3 class="font-bold text-4xl">Expenses</h3>  
   <% @expenses.each do |expense| %>
     <li>
-      <%= expense.date %>
+      <%= expense&.date&.strftime('%m/%d/%Y') %>
       <%= expense.city %>
       <%= expense.state %>
       <%= expense.cost %>
