@@ -8,7 +8,7 @@
             <%= form_tag data_viz_path, method: "get" do %>
                 <%= date_field_tag :start_date, params[:start_date] %>
                 <%= date_field_tag :end_date, params[:end_date] %>
-                <%= submit_tag "Change", class: "hover:text-fuchsia-600" %>
+                <%= submit_tag "Change", class: "bg-fuchsia-600 rounded-lg hover:bg-fuchsia-500 p-3 text-white font-bold" %>
             <% end %>
         </div>
         <%=line_chart @expenses_tour.group_by_day(:date).sum(:cost), ytitle: "Cost" %>
