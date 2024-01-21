@@ -25,14 +25,15 @@ Rails.application.routes.draw do
   # get "expenses"
 
 
-  get "tours/:id/expenses" => "expenses#index"
+  get "tours/:id/expenses" => "expenses#index", as: "tour_expenses"
   get "tours/:id/expenses/add" => "expenses#new"
-  get "tours/:id/expenses/import" => "expenses#import"
+  get "tours/:id/expenses/import" => "expenses#show"
   post "tours/:id/expenses" => "expenses#create"
+  
 
 
   resources :expenses do
-    collection {post :import}
+    collection { post :import}
   end
 
   # get "expenses/new" => "expenses#new"

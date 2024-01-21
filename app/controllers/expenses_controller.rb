@@ -46,35 +46,39 @@ class ExpensesController < ApplicationController
 
   end
 
-  def import
-
+  def show
     @tour = Tour.find(params[:id])
+  end
+
+  def import
     @url = '/tours/1/expenses'
     ap params
-    ap "paraaaams"
+    ap "paraaaams tour id"
+    ap params[:tour_id]
+    ap @tour
     ap params[:file]
     file = params[:file]
     # return redirect_to expenses_path, notice: "Only CSV files" unless params[:file].content_type == "text/csv"
 
     if file 
-      file = File.open(file)
-      csv =  CSV.parse(file, headers: true, col_sep: ';')
-      csv.each do |row|
-        expense_hash = {}
-        expense_hash[:city] = row["City"]
-        ap expense_hash
-        ap "expense_hash ###"
-        p row
-      end
-      ap "CSV contents ... "
-      ap csv
+      # file = File.open(file)
+      # csv =  CSV.parse(file, headers: true, col_sep: ';')
+      # csv.each do |row|
+      #   expense_hash = {}
+      #   expense_hash[:city] = row["City"]
+      #   ap expense_hash
+      #   ap "expense_hash ###"
+      #   p row
+      # end
+      # ap "CSV contents ... "
+      # ap csv
 
       if params[:file].present?
         Expense.import(params[:file])
         flash[:notice] = "CSV uploaded successfully"
-        # redirect_to @url #expense_path
+        redirect_to tour_expenses_path(params[:tour_id])
       else
-        # redirect_to @url #expense_path
+        redirect_to @url #expense_path
       end
     end
   end

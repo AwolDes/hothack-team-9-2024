@@ -10,6 +10,7 @@
   <%= form_with url: import_expenses_path, method: :post do |form| %>
  
     <%= form.file_field :file, accept: ".csv" %>
+    <%= form.hidden_field :tour_id, value:@tour.id %>   
     <%= form.button 'Import CSV' %>
     
   <% end %>
