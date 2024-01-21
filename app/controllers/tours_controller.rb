@@ -25,6 +25,7 @@ class ToursController < ApplicationController
     end
 
     # This method deletes a tour from http request.
+    # this not working cause of foreign key problem with the database
     def delete_tour
       tour_id = params.permit(:id)[:id]
 
@@ -32,7 +33,7 @@ class ToursController < ApplicationController
     
       tour = Tour.find_by(id: tour_id)
     
-      tour.delete()
+      tour.delete
 
     end
     
