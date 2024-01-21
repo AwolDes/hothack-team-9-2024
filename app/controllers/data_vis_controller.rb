@@ -31,15 +31,6 @@ class DataVisController < ApplicationController
         end
 
         @tour_costs = @expenses_tour.group(:category).sum(:cost)
-        @comparison_data = @tour_costs.map do |category, actual_cost|
-            {
-                name: category.capitalize,
-                data: {
-                    'Actual Cost' => actual_cost,
-                    'Average Cost' => @avg_category_expense.to_h[category]&.last || 0
-                }
-            }
-        end
     end
 
 

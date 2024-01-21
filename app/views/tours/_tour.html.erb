@@ -28,9 +28,9 @@
                      <%= link_to "Analyse", data_viz_path(tour) %>
 
                      <% if tour.expenses.length > 0 %>
-                        <%= link_to "See expenses", tour_expenses_path(tour) %>
+                        <%= link_to "See expenses", tour_expenses_path(tour), style: "color: blue;" %>
                     <% else %>
-                        <%= link_to "Add expenses", expenses_import_path(tour) %>
+                        <%= link_to "Add expenses", expenses_import_path(tour), style: "color: blue;" %>
                     <% end %>
                     <%= link_to "Delete", tour_delete_path(tour), data: { "turbo-method": :delete }, style: "color: red;" %>
 

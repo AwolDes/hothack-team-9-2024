@@ -1,19 +1,30 @@
-<div class="bg-white shadow rounded">
-  <h1 class="font-bold text-4xl">Expense</h1>
-  <p>Upload Expense</p>
-  <p><%=@tour.name %>
-  <p><%=@tour.start_date %></p>
-  <p><%=@tour.finish_date %></p>
-  <p><%=@tour.budget %></p>
 
+<div class="bg-white shadow rounded p-10 m-auto">
+
+  <h1 class="font-bold text-4xl">Import Expenses</h1>
+  
+  <div class="grid grid-cols-2 gap-4 p-20 border border-slate-300 m-auto">
+  <div class="font-medium">Tour Name</div><div><%=@tour.name %></div>
+  <div class="font-medium">Start Date</div><div><%=@tour.start_date.strftime('%m/%d/%Y') %></div>
+  <div class="font-medium">End Date</div><div><%=@tour.finish_date.strftime('%m/%d/%Y') %></div>
+  <div class="font-medium slashed-zero">Budget</div><div><%= number_to_currency(@tour.budget,  :unit => "$", :separator => ".", :delimiter => ",") %></div>
+  </div>
   
   <%= form_with url: import_expenses_path, method: :post do |form| %>
- 
-    <%= form.file_field :file, accept: ".csv" %>
-    <%= form.hidden_field :tour_id, value:@tour.id %>   
-    <%= form.button 'Import CSV' %>
+      <%= form.hidden_field :tour_id, value:@tour.id %>
+      <div class="grid grid-cols-2 gap-4 p-8 m-auto">
+      <div class="font-bold">
+      <%= form.file_field :file, accept: ".csv" %>
+      </div>   
+      <div class="hover:text-fuchsia-600 font-bold">
+        <%= form.button 'Import CSV' %>
+      </div>
+      </div>
     
   <% end %>
+
+
+
 
 
 

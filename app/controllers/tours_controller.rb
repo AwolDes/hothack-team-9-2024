@@ -5,7 +5,7 @@ class ToursController < ApplicationController
 
     def index
         #todo change query when auth is merged.
-        @tours = Tour.all
+        @tours = current_user.tours
     end
 
     def add_tour
@@ -15,7 +15,7 @@ class ToursController < ApplicationController
     def create_tour
         post_data = params.permit(:name, :start_date, :finish_date, :budget)
     
-        new_tour = Tour.new(post_data)
+        new_tour = Tour.new({ **post_data, user_id: current_user.id })
         
 
 

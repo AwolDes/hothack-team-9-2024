@@ -1,0 +1,23 @@
+databases:
+  - name: hothack_db
+    databaseName: hothack_team_9_2024_production
+    user: hothack_team_9_2024
+    plan: free
+
+services:
+  - type: web
+    name: hothack
+    runtime: ruby
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    # preDeployCommand: "./bin/rails db:migrate" # preDeployCommand only available on paid instance types
+    startCommand: "./bin/rails server"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: hothack_db
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: WEB_CONCURRENCY
+        value: 2 # sensible default
