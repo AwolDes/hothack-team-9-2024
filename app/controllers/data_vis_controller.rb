@@ -6,7 +6,7 @@ class DataVisController < ApplicationController
 
         #budget calculations
         tour_budget = Tour.find_by(id: 1)&.budget 
-        total_expenses_cost = Expense.where(tour_id: 1).sum(:cost)
+        total_expenses_cost = @expenses.where(tour_id: 1).sum(:cost)
         percentage_of_budget = (total_expenses_cost / tour_budget) * 100
 
         @budget_chart = [
