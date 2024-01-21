@@ -1,0 +1,22 @@
+<div class="bg-white shadow rounded">
+  <h1 class="font-bold text-4xl">Expense</h1>
+  <p>Upload Expense</p>
+  <p><%=@tour.name %>
+  <p><%=@tour.start_date %></p>
+  <p><%=@tour.finish_date %></p>
+  <p><%=@tour.budget %></p>
+
+  
+  <%= form_with url: import_expenses_path, method: :post do |form| %>
+ 
+    <%= form.file_field :file, accept: ".csv" %>
+    <%= form.hidden_field :tour_id, value:@tour.id %>   
+    <%= form.button 'Import CSV' %>
+    
+  <% end %>
+
+
+
+
+
+</div>
