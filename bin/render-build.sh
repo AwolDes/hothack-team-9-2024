@@ -5,4 +5,4 @@ set -o errexit
 bundle install
 ./bin/rails assets:precompile
 ./bin/rails assets:clean
-bundle exec rake db:migrate%
+./bin/rails db:migrate
