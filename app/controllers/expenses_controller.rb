@@ -5,8 +5,7 @@ class ExpensesController < ApplicationController
   def index
     @tour = Tour.find(params[:id])
     @expenses = Expense.where(tour_id:params[:id])
-    # ap @tour
-    # ap @expenses
+
   end
 
   def new
@@ -15,9 +14,6 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    ap "paaaraaams id"
-    # why is params[:id] not returned for tour id from url?
-    ap params[:id]
     
     post_data = params.require(:expense).permit(
       :date,
@@ -35,10 +31,9 @@ class ExpensesController < ApplicationController
     
 
     if @expense.save
-      # fix this to by dynamic tours id how to extract from post_data?
+
       @url = '/tours/1/expenses'
-      # ap "url redirect"
-      # ap @url
+
       redirect_to @url
     else
       render :new, status: :unprocessable_entity
@@ -51,34 +46,18 @@ class ExpensesController < ApplicationController
   end
 
   def import
-    @url = '/tours/1/expenses'
-    ap params
-    ap "paraaaams tour id"
-    ap params[:tour_id]
-    ap @tour
-    ap params[:file]
+
     file = params[:file]
-    # return redirect_to expenses_path, notice: "Only CSV files" unless params[:file].content_type == "text/csv"
+
 
     if file 
-      # file = File.open(file)
-      # csv =  CSV.parse(file, headers: true, col_sep: ';')
-      # csv.each do |row|
-      #   expense_hash = {}
-      #   expense_hash[:city] = row["City"]
-      #   ap expense_hash
-      #   ap "expense_hash ###"
-      #   p row
-      # end
-      # ap "CSV contents ... "
-      # ap csv
-
+      
       if params[:file].present?
         Expense.import(params[:file])
         flash[:notice] = "CSV uploaded successfully"
         redirect_to tour_expenses_path(params[:tour_id])
       else
-        redirect_to @url #expense_path
+        flash[:notice] = "CSV errors"
       end
     end
   end
